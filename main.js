@@ -12,6 +12,18 @@ $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts',
 });
 })
 
+//this will render comments of posts on page with click
+$("ul").on("click", "li", function(){ 
+    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/post/id/comments', function(x){
+        console.log(x);
+        x.forEach(function(x){
+            var li = $('<li></li>');
+            li.text(JSON.stringify(x)); //this renders it on the page in legible characters
+            list.append(li);
+        })
+    });
+    })
+
 //Hide the results from the previous actions
 $("#deleteList").click(()=>{
     list.empty();
@@ -31,9 +43,9 @@ $("#idTen").click(()=>{
     });
     })
 
-//Get the comments from comments from post with id of 12 
-$("#commentTwelve").click(()=>{
-    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/12/comments', function(x){
+//Get the comments from comments from post with id of 14 
+$("#comment14").click(()=>{
+    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/14/comments', function(x){
         console.log(x);
     });
     })
@@ -57,7 +69,7 @@ $.post('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts'
 })
 
 //Replace the post with id of 14 and render the responseJSON
-$("#replacePost12").click(()=>{
+$("#replacePost14").click(()=>{
 $.ajax({
 	method: 'PUT',
 	url: 'https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts/14',
@@ -83,3 +95,15 @@ $.ajax({
 })
  })
 
+
+ //Get back to the posts
+ $("#returnBack").click(()=>{
+    $.get('https://my-json-server.typicode.com/zachhall/WIN2020_AjaxPromises/posts', function(x){
+        console.log(x);
+        x.forEach(function(x){
+            var li = $('<li></li>');
+            li.text(JSON.stringify(x)); //this renders it on the page in legible characters
+            list.append(li);
+        })
+    });
+    })
